@@ -1,8 +1,8 @@
 import os
 import sys
 import math
-from PySide6.QtWidgets import QApplication, QWidget, QSpinBox
-from PySide6.QtCore import Qt, Slot, QRect
+from PySide2.QtWidgets import QApplication, QWidget, QSpinBox
+from PySide2.QtCore import Qt, Slot, QRect
 
 import UIFunc
 import Recorder
@@ -12,19 +12,6 @@ from loguru import logger
 
 from Plugin.Manager import PluginManager
 from Util.RunScriptClass import RunScriptCMDClass, StopFlag
-
-# Windows 7 兼容性补丁
-if hasattr(ctypes, 'windll') and hasattr(ctypes.windll, 'kernel32'):
-    try:
-        # 解决 Windows 7 上可能遇到的 DLL 加载问题
-        ctypes.windll.kernel32.SetDllDirectoryW(None)
-    except Exception:
-        pass
-
-# 确保使用兼容的 Qt 后端
-os.environ['QT_QPA_PLATFORM_PLUGIN_PATH'] = os.path.join(
-    os.path.dirname(os.path.abspath(__file__)), 'PySide6', 'plugins'
-)
 
 def to_abs_path(*args):
     return os.path.join(os.path.dirname(os.path.realpath(sys.argv[0])),
