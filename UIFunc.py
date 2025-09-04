@@ -10,11 +10,11 @@ import platform
 import locale
 import Recorder
 
-from PySide6.QtGui import QTextCursor
+from PySide2.QtGui import QTextCursor
 from qt_material import list_themes, QtStyleTools
-from PySide6.QtCore import *
-from PySide6.QtWidgets import QMainWindow, QApplication, QMessageBox
-from PySide6.QtMultimedia import QSoundEffect
+from PySide2.QtCore import *
+from PySide2.QtWidgets import QMainWindow, QApplication, QMessageBox
+from PySide2.QtMultimedia import QSoundEffect
 from loguru import logger
 
 from Event import ScriptEvent, flag_multiplemonitor
