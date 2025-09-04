@@ -3,8 +3,8 @@ import traceback
 from dataclasses import dataclass
 from typing import List
 
-from PySide6.QtCore import QThread, Signal, QMutex, QWaitCondition, QDeadlineTimer, Qt, Slot
-from PySide6.QtWidgets import QWidget
+from PySide2.QtCore import QThread, Signal, QMutex, QWaitCondition, QDeadlineTimer, Qt, Slot
+from PySide2.QtWidgets import QWidget
 from loguru import logger
 
 from Util.Global import State
