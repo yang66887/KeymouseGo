@@ -40,7 +40,7 @@ def main():
 
     ui.setFixedSize(ui.width(), ui.height())
     ui.show()
-    sys.exit(app.exec())
+    sys.exit(app.exec_())
 
 
 @logger.catch
