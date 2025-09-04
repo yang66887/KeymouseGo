@@ -1,0 +1,46 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: release
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  keymousego-version: _v5_2_1
+  tag_name: v5.2.1
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@main
+      - name: Set up Python 3.8
+        uses: actions/setup-python@main
+        with:
+          python-version: "3.8"
+      - name: Install dependencies
+        run: |
+          pip3 install -r requirements-windows.txt
+          pip3 install pyinstaller
+      - name: Bundle Packages
+        run: |
+          pyinstaller -Fw --icon=Mondrian.ico --add-data './assets;assets' KeymouseGo.py
+      - name: Copy artifact
+        run: |
+          mkdir artifact && mv dist/KeymouseGo.exe ./artifact/KeymouseGo${{ env.keymousego-version }}-win.exe
+      - name: Artifact
+        uses: actions/upload-artifact@main
+        with:
+          name: windows
+          path: ${{ github.workspace }}/artifact/
+#      - name: Create Release
+#        uses: softprops/action-gh-release@v2
+#        with:
+#          draft: true
+#          name: KeymouseGo${{ env.keymousego-version }}
+#          tag_name: ${{ env.tag_name }}
+#          files: ./artifact/KeymouseGo${{ env.keymousego-version }}-win.exe
